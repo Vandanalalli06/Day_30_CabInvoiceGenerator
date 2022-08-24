@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace InvoiceGenerator
+namespace CabInvoiceGenerator
 {
-    public class CabInvoiceCustomException : Exception
+    //CabInvoiceException.cs
+
+    class CabInvoiceException : Exception
     {
-        public ExceptionType type;
-        public CabInvoiceCustomException(ExceptionType type, string message) : base(message)
-        {
-            this.type = type;
-        }
         public enum ExceptionType
         {
-            INVALID_ID_DISTANCE, INVALIDID_TIME, NULL_RIDES, INVALID_USER_ID, INVALIDID_RIDETYPE
+            INVALID_RIDE_TYPE,
+            INVALID_DISTANCE,
+            INVALID_TIME,
+            NULL_RIDES,
+            INVALID_USER_ID
+        }
+
+        ExceptionType type;
+        public CabInvoiceException(ExceptionType type, string message) : base(message)
+        {
+            this.type = type;
         }
     }
 }
