@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Day_30_CabVoiceGenerator.CabvoiceException;
 
 namespace InvoiceGenerator
 {
@@ -15,7 +14,6 @@ namespace InvoiceGenerator
         public readonly int MINIMUM_FARE;
         public RideType rideType;
         public InvoiceGenerator(RideType rideType)
-
         {
             this.rideType = rideType;
             if (RideType.NORMAL == rideType)
@@ -30,8 +28,8 @@ namespace InvoiceGenerator
                 COST_PER_TIME = 2;
                 MINIMUM_FARE = 20;
             }
-
         }
+        //calulating for uc1 and uc 5 normal and premium
         public double CalculateTotalFair(double distance, int time)
         {
             try
@@ -57,6 +55,17 @@ namespace InvoiceGenerator
                 Console.WriteLine(ex.Message);
                 return 0;
             }
+        }
+        //method overloading for multiple rides
+        public double CalculateTotalFair(Ride[] rides)
+        {
+            double totalFair = 0;
+            foreach (Ride ride in rides)
+            {
+                totalFair += CalculateTotalFair(ride.distance, ride.time);
+            }
+
+            return Math.Max(totalFair, MINIMUM_FARE); ;
         }
     }
 }

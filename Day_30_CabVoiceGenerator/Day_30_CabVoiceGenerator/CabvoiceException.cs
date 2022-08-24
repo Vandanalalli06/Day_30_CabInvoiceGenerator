@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Day_30_CabVoiceGenerator
+namespace InvoiceGenerator
 {
-    internal class CabvoiceException
+    public class CabInvoiceCustomException : Exception
     {
-        public class CabInvoiceCustomException : Exception
+        public ExceptionType type;
+        public CabInvoiceCustomException(ExceptionType type, string message) : base(message)
         {
-            public ExceptionType type;
-            public CabInvoiceCustomException(ExceptionType type, string message) : base(message)
-            {
-                this.type = type;
-            }
-            public enum ExceptionType
-            {
-                INVALID_ID_DISTANCE, INVALIDID_TIME, NULL_RIDES, INVALID_USER_ID, INVALIDID_RIDETYPE
-            }
+            this.type = type;
         }
+        public enum ExceptionType
+        {
+            INVALID_ID_DISTANCE, INVALIDID_TIME, NULL_RIDES, INVALID_USER_ID, INVALIDID_RIDETYPE
+        }
+
     }
 }
 
