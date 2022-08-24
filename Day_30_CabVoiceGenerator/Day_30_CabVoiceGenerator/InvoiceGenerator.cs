@@ -48,24 +48,24 @@ namespace InvoiceGenerator
                     totalFare = distance * MINIMUM_COST_PER_KM + time * COST_PER_TIME;
                     return Math.Max(totalFare, MINIMUM_FARE);
                 }
-
             }
             catch (CabInvoiceCustomException ex)
             {
                 Console.WriteLine(ex.Message);
                 return 0;
-            }
+            }          
         }
         //method overloading for multiple rides
-        public double CalculateTotalFair(Ride[] rides)
+        public InvoiceSummery CalculateTotalFair(Ride[] rides)
         {
             double totalFair = 0;
             foreach (Ride ride in rides)
             {
                 totalFair += CalculateTotalFair(ride.distance, ride.time);
             }
-
-            return Math.Max(totalFair, MINIMUM_FARE); ;
+            totalFair = Math.Max(totalFair, MINIMUM_FARE);
+            return new InvoiceSummery(rides.Length, totalFair);
+            //rides.Where(x => x.userID == 3);
         }
     }
 }

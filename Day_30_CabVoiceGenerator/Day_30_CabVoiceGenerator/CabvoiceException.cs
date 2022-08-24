@@ -17,8 +17,5 @@ namespace InvoiceGenerator
         {
             INVALID_ID_DISTANCE, INVALIDID_TIME, NULL_RIDES, INVALID_USER_ID, INVALIDID_RIDETYPE
         }
-
     }
 }
-
-
